@@ -12,8 +12,14 @@ export class BooksServices {
         return newBook
     }
 
-    getBooks() {
-        return booksDatabase
+    getBooks(search: string | undefined) {
+        if(search){
+            const bookFilter = booksDatabase.filter(book => book.name.toLowerCase().includes(search.toLowerCase()))
+            return bookFilter
+
+        }else{
+            return booksDatabase
+        }
     }
 
     getOneBook(id:number) {
